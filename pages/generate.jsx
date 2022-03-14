@@ -28,7 +28,7 @@ export default function Generate() {
         'Content-Type': 'application/json'
       }
     }
-    const url = "https://apiroom.net/api/dyneorg/Reflow-create-DPP-an-store-in-Sawroom.chain";
+    const url = "https://apiroom.net/api/ReflowDPP/Reflow-create-DPP-and-store-in-sawroom.chain";
     const res = await fetch(url, options);
     if (res.status === 200) {
       const json = await res.json();
@@ -46,7 +46,7 @@ export default function Generate() {
         <form onSubmit={onSubmit}>
           <input type="text" onChange={(e) => { setRid(e.target.value) }} placeholder="Insert the valueflows ID" className="px-3 py-4 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-base border-0 shadow outline-none focus:outline-none focus:ring w-full" required />
           <button className="text-green-500 bg-transparent border border-solid border-green-500 hover:bg-green-500 hover:text-white active:bg-green-600 font-bold uppercase px-8 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="submit">
-            GENERATE
+            GENERATE 💌
           </button>
         </form>
         {result && <QRCode value={result} />}
