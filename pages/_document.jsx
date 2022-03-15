@@ -16,6 +16,7 @@ class MyDocument extends Document {
           <meta name='mobile-web-app-capable' content='yes' />
           <meta name='msapplication-TileColor' content='#60cd71' />
           <meta name='msapplication-tap-highlight' content='no' />
+          <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover" />
 
           <link rel='apple-touch-icon' href='/icons/touch-icon-iphone.png' />
           <link rel='apple-touch-icon' sizes='152x152' href='/icons/touch-icon-ipad.png' />
@@ -49,12 +50,13 @@ class MyDocument extends Document {
           <link rel='apple-touch-startup-image' href='/images/apple_splash_1242.png' sizes='1242x2208' />
           <link rel='apple-touch-startup-image' href='/images/apple_splash_750.png' sizes='750x1334' />
           <link rel='apple-touch-startup-image' href='/images/apple_splash_640.png' sizes='640x1136' />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+          <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500&display=swap" rel="stylesheet" />
         </Head>
         <body>
-          <div className="container mx-auto" >
-            <Main />
-            <NextScript />
-          </div>
+          <Main />
+          <NextScript />
         </body>
       </Html>
     );

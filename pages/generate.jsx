@@ -1,12 +1,15 @@
-import { useState } from 'react';
 import base45 from 'base45';
+import { Block, Button, List, ListInput, Navbar, NavbarBackLink, Page, Preloader } from 'konsta/react';
+import { useState } from 'react';
 import QRCode from "react-qr-code";
 
 export default function Generate() {
   const [rid, setRid] = useState('');
   const [result, setResult] = useState();
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault();
 
     const data = {
@@ -38,19 +41,31 @@ export default function Generate() {
   }
 
   return (
-    <>
-      <h1 className="text-3xl font-bold">
-        Generate
-      </h1>
-      <div className="mb-3 pt-0">
+    <Page>
+      <Navbar left={
+        <NavbarBackLink text="Back" onClick={() => history.back()} />
+      } title="Generate" />
+
+      <List className="p-2">
         <form onSubmit={onSubmit}>
-          <input type="text" onChange={(e) => { setRid(e.target.value) }} placeholder="Insert the valueflows ID" className="px-3 py-4 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-base border-0 shadow outline-none focus:outline-none focus:ring w-full" required />
-          <button className="text-green-500 bg-transparent border border-solid border-green-500 hover:bg-green-500 hover:text-white active:bg-green-600 font-bold uppercase px-8 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="submit">
+
+          <ListInput
+            label="Valueflows ID"
+            floatingLabel
+            type="text"
+            placeholder="Please insert a valid ID"
+            onChange={(e) => { setRid(e.target.value) }}
+            required
+          />
+          <Button large outline type="submit">
             GENERATE 💌
-          </button>
+          </Button>
         </form>
-        {result && <QRCode value={result} />}
-      </div>
-    </>
+      </List>
+      <Block className="flex justify-center w-full">
+        {loading && !result && <Preloader />}
+        {result && <QRCode value={result} className="mx-auto" />}
+      </Block>
+    </Page>
   )
 }
