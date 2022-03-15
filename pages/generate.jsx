@@ -44,7 +44,7 @@ export default function Generate() {
     <Page>
       <Navbar left={
         <NavbarBackLink text="Back" onClick={() => history.back()} />
-      } title="Generate" />
+      } title="Generate DPP" />
 
       <List className="p-2">
         <form onSubmit={onSubmit}>

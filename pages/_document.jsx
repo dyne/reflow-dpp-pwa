@@ -16,7 +16,6 @@ class MyDocument extends Document {
           <meta name='mobile-web-app-capable' content='yes' />
           <meta name='msapplication-TileColor' content='#60cd71' />
           <meta name='msapplication-tap-highlight' content='no' />
-          <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover" />
 
           <link rel='apple-touch-icon' href='/icons/touch-icon-iphone.png' />
           <link rel='apple-touch-icon' sizes='152x152' href='/icons/touch-icon-ipad.png' />

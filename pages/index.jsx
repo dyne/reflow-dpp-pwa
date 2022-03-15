@@ -13,12 +13,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1 className="my-3 text-4xl font-bold text-center">
-        Welcome to the <a href="https://reflowos.dyne.org" className="text-green-400">Reflow</a> DPP App
+      <h1 className="px-2 my-3 text-2xl font-bold text-center">
+        🤗 to the <a href="https://reflowos.dyne.org" target="_blank" rel="noopener noreferrer" className="text-green-400">Reflow</a> DPP App
       </h1>
 
-      <p className="p-4 m-3">
-        This app is ment to verify and generate Digital product passports part of the <a href="https://reflowproject.eu"> Reflow project </a>
+      <p className="p-4 m-3 text-sm">
+        This app is ment to verify and generate Digital product passports part of the <a href="https://reflowproject.eu" target="_blank" rel="noopener noreferrer"> Reflow project </a>
       </p>
 
       <div className="flex flex-col ">
