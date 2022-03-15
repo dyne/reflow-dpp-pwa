@@ -35,7 +35,7 @@ export default function Verify() {
     if (resp.status === 200) {
       const json = await resp.json();
       setVerification(JSON.stringify(json.output[0]).replace(/_/g, ' '));
-      setBlock(json.DPP.sawroom_entry)
+      setBlock(json.DPP.sawroom_entry);
       setHappy(true);
       setTimestamp(new Date().toTimeString().split(' ')[0]);
     } else {
@@ -56,7 +56,7 @@ export default function Verify() {
     if (res.status === 200) {
       const json = await res.json();
       setDetails(json);
-      setPopupOpened(true)
+      setPopupOpened(true);
     }
   }
 
@@ -71,9 +71,10 @@ export default function Verify() {
           label
           after={timestamp || ''}
           title={verification}
-          text={block || ''}
+          text={''}
           media={
             <Checkbox
+              readOnly
               component="div"
               name="verified-checkbox"
               checked={happy}
