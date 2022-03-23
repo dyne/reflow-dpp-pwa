@@ -18,6 +18,7 @@ export default function Verify() {
   const [details, setDetails] = useState();
   const [timestamp, setTimestamp] = useState('');
   const [popupOpened, setPopupOpened] = useState(false);
+  const [popupTitle, setPopupTitle] = useState('DPP details');
 
 
   const verifyLocalDpp = async (result) => {
@@ -42,8 +43,7 @@ export default function Verify() {
       setVerification('🤯 Verification failed');
     }
   }
-
-  const getBlockchainDetails = async (result) => {
+  const retrieveDetails = async () => {
     const options = {
       method: 'POST',
       body: JSON.stringify({ data: { sawroom_entry: block } }),
@@ -53,11 +53,39 @@ export default function Verify() {
     }
     const url = "https://apiroom.net/api/ReflowDPP/Sawroom-Read-data-from-the-blockchain";
     const res = await fetch(url, options);
-    if (res.status === 200) {
-      const json = await res.json();
-      setDetails(json);
-      setPopupOpened(true);
+    return await res.json();
+  }
+
+  const retrieveValueFlows = async (vid) => {
+    const options = {
+      method: 'POST',
+      body: JSON.stringify({
+        "id": vid,
+        "recurseLimit": 10,
+        "unwind": true
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
     }
+    const url = "https://reflow-demo.dyne.org/api/json/trace";
+    const res = await fetch(url, options);
+    return await res.json();
+  }
+
+  const getBlockchainDetails = async (result) => {
+    const json = await retrieveDetails();
+    setDetails(json);
+    setPopupTitle("DPP Details");
+    setPopupOpened(true);
+  }
+
+  const getValueFlows = async (result) => {
+    const details = await retrieveDetails(result);
+    const valueFlows = await retrieveValueFlows(details.sawroom.id);
+    setDetails(valueFlows);
+    setPopupTitle("Value Flows");
+    setPopupOpened(true);
   }
 
   return (
@@ -106,9 +134,14 @@ export default function Verify() {
       <Block>
         {dpp && <pre className="overflow-scroll w-100">{dpp}</pre>}
         {happy &&
-          <Button outline onClick={getBlockchainDetails} className="mt-8">
-            BLOCKCHAIN DETAILS
-          </Button>
+          <>
+            <Button outline onClick={getBlockchainDetails} className="mt-8">
+              BLOCKCHAIN DETAILS
+            </Button>
+            <Button outline onClick={getValueFlows} className="mt-8">
+              VIEW VALUEFLOWS
+            </Button>
+          </>
         }
       </Block>
 
@@ -116,7 +149,7 @@ export default function Verify() {
       <Popup opened={popupOpened} onBackdropClick={() => setPopupOpened(false)}>
         <Page>
           <Navbar
-            title="DPP Details"
+            title={popupTitle}
             right={
               <Link navbar onClick={() => setPopupOpened(false)}>
                 Close
