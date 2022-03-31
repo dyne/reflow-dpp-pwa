@@ -4,6 +4,7 @@ import {
 } from 'konsta/react';
 import { useState } from 'react';
 import { QrReader } from 'react-qr-reader';
+import {JSONTree} from "react-json-tree";
 
 const format = (data) => {
   const decoded = base45.decode(data).toString('utf8');
@@ -159,7 +160,8 @@ export default function Verify() {
           <Block className="space-y-4">
             {
               details && <>
-                <pre className="overflow-scroll w-100 h-100">{JSON.stringify(details, null, 2)}</pre>
+
+                <pre className="overflow-scroll w-100 h-100"><JSONTree data={details} />;</pre>
               </>
             }
           </Block>
